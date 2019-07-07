@@ -1,52 +1,52 @@
-var path = require('path');
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const SRC_DIR = path.resolve(__dirname, 'src');
+const DIST_DIR = path.resolve(__dirname, 'public');
+const devMode = process.env.NODE_ENV === 'development';
 
 module.exports = {
-    entry: [
-      './app/index.js',
-      './app/styles.scss'
-    ],
-    output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist')
-    },
-    module: {
-      rules: [
-        {
-          test: /\.js$/,
-          exclude: /node_modules/,
-          use: {
-            loader: "script-loader"
-          }
-        },
-        {
-          test: /\.scss$/,
-          exclude: /node_modules/,
-          use: [
-            {
-              loader: "file-loader",
-              options: {
-                name: "styles.css"
-              }
-            },
-            {
-              loader: "extract-loader"
-            },
-            {
-              loader: "css-loader",
-              options: {
-                modules: true,
-                importLoaders: 2,
-                sourceMap: true,
-              }
-            },
-            {
-              loader: "postcss-loader"
-            },
-            {
-              loader: "sass-loader"
-            }
-        ]
+  entry: [
+    path.resolve(SRC_DIR, 'index.jsx'),
+  ],
+  output: {
+      filename: 'bundle.js',
+      path: DIST_DIR
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
         }
-      ]
-    }
+      },
+      {
+        test: /\.(scss|sass|css)$/,
+        exclude: /node_modules/,
+        loaders: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              sourceMap: true,
+              importLoaders: 1,
+            }
+          },
+          'sass-loader'
+        ]
+      }
+    ]
+  },
+  resolve: {
+    extensions: ['*','.js','.jsx']
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: devMode ? '[name].css' : '[name].css',
+      chunkFilename: devMode ? '[id].css' : '[id].css'
+    })
+  ]
 };

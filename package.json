@@ -1,20 +1,26 @@
 {
-  "name": "brickwall",
+  "name": "brickwall-ui",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "public/index.html",
   "license": "BSD-3-Clause",
+  "scripts": {
+    "prod": "NODE_ENV=production ./node_modules/.bin/webpack -p --mode production",
+    "dev": "NODE_ENV=development ./node_modules/.bin/webpack --mode development",
+    "test": "echo \"No available tests\" && exit 1"
+  },
   "dependencies": {
-    "uikit": "^3.1.6"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   },
   "devDependencies": {
-    "autoprefixer": "^9.6.0",
+    "@babel/core": "^7.5.0",
+    "@babel/preset-env": "^7.5.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
     "css-loader": "^3.0.0",
-    "extract-loader": "^3.1.0",
-    "file-loader": "^4.0.0",
+    "mini-css-extract-plugin": "^0.7.0",
     "node-sass": "^4.12.0",
-    "postcss-loader": "^3.0.0",
     "sass-loader": "^7.1.0",
-    "script-loader": "^0.7.2",
     "webpack": "^4.35.2",
     "webpack-cli": "^3.3.5"
   }
