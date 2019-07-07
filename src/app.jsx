@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
 import Header from './header/header';
+import View from './view/view';
 
 class App extends Component {
     render () {
         return (
-            <Header title="Brickwall" />
+            <div>
+                <Header title="Brickwall" />
+                <View />
+            </div>
         );
     }
 }

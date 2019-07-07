@@ -1,5 +1,5 @@
-bundle/*.js
-bundle/*.css
+public/*.js
+public/*.css
 node_modules
 package-lock.json
 *.log
