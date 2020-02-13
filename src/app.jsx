@@ -5,7 +5,7 @@ import View from './view/view';
 class App extends Component {
     render () {
         return (
-            <div>
+            <div uk-flex="true">
                 <Header title="Brickwall" />
                 <View />
             </div>

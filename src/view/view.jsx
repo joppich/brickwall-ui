@@ -9,8 +9,8 @@ class View extends Component {
     render () {
         return (
             <div className={styles.View}>
-                <Tags />,
-                <Toc />,
+                <Tags />
+                <Toc />
                 <Post />
             </div>
         ) 
